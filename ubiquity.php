@@ -12,7 +12,7 @@ License: MIT
 require_once('includes/wp-admin.php');
 require_once('includes/wp-social.php');
 require_once('includes/wp-widgets.php');
-require_once('includes/wp-aggregate.php'); 
+require_once('includes/wp-aggregate.php');
 
 // nav bar
 add_action('wp_print_scripts', 'ubiquity_scripts_action', 50);
@@ -30,7 +30,7 @@ add_action('wp_footer', 'ubiquity_print_customer_analytics_footer');
 
 add_shortcode('field', 'ubiq_shortcode_field');
 
-function ubiq_shortcode_field($atts) { 
+function ubiq_shortcode_field($atts) {
 	extract(shortcode_atts(array(
 			'name' => 'bar',
 		), $atts));
@@ -79,39 +79,32 @@ function ubiquity_print_ga_tracking_header() {
           ['_setDomainName', '.<?php echo $blogurl ?>'],
           ['_setAllowLinker',true],
           ['_trackPageview']
-        );
         <?php if(get_option('ubiq_ga_rollup')) { ?>
-        _gaq.push(
-          ['b._setAccount', 'UA-17151946-1'],
+          , ['b._setAccount', 'UA-17151946-1'],
           ['b._setAllowHash', false],
           ['b._setDomainName', '.<?php echo $blogurl ?>'],
           ['b._setAllowLinker',true],
           ['b._trackPageview']
-        );
         <?php } ?>
-        <?php if( is_single() ) { 
+        <?php if( is_single() ) {
           global $post;
           global $blog_id;
         ?>
-        _gaq.push(
-          ['c._setAccount', 'UA-19342255-1'],
+          , ['c._setAccount', 'UA-19342255-1'],
           ['c._setAllowHash', false],
           ['c._setDomainName', '.<?php echo $blogurl ?>'],
           ['c._setAllowLinker',true],
           ['c._trackPageview', '/blog/<?php echo $blog_id; ?>/author/<?php echo $post->post_author; ?>/']
-        );
-        <?php } else { 
+        <?php } else {
           global $blog_id;
         ?>
-        _gaq.push(
-          ['c._setAccount', 'UA-19342255-1'],
+          , ['c._setAccount', 'UA-19342255-1'],
           ['c._setAllowHash', false],
           ['c._setDomainName', '.<?php echo $blogurl ?>'],
           ['c._setAllowLinker',true],
           ['c._trackPageview', '/blog/<?php echo $blog_id; ?>/other/']
-        );
-        
         <?php } ?>
+        );
   </script>
   <?php
   }
@@ -141,7 +134,7 @@ function ubiquity_print($function) {
 function ubiquity_print_navigation() {
 
 include("includes/ubiquity-nav.php");
-	
+
 }
 
 function ubiquity_print_tracker_bodytop() { ?>
@@ -149,7 +142,7 @@ function ubiquity_print_tracker_bodytop() { ?>
 <?php
 }
 
-function ubiquity_print_tracker_bodybottom() { 
+function ubiquity_print_tracker_bodybottom() {
   if (!get_option('ubiq_shownavbar') && !is_admin()) { return; }
 ?>
 	<script type='text/javascript'> var mp_protocol = (('https:' == document.location.protocol) ? 'https://' : 'http://'); document.write(unescape('%3Cscript src="' + mp_protocol + 'api.mixpanel.com/site_media/js/api/mixpanel.js" type="text/javascript"%3E%3C/script%3E')); </script> <script type='text/javascript'> try {  var mpmetrics = new MixpanelLib('a32eb79d576c46f49e555808f0e9bf7a'); } catch(err) { null_fn = function () {}; var mpmetrics = {  track: null_fn,  track_funnel: null_fn,  register: null_fn,  register_once: null_fn, register_funnel: null_fn }; } </script>
@@ -165,7 +158,7 @@ function ubiquity_scripts_action() {
 
 	if (!get_option('ubiq_shownavbar') && !is_admin()) { return; }
 	global $user_login;
-	
+
 	$ubiquity_plugin_url = trailingslashit( get_bloginfo('wpurl') ).PLUGINDIR.'/'. dirname( plugin_basename(__FILE__) );
 
 	$local_user = '';
@@ -185,14 +178,14 @@ function ubiquity_styles_action() {
     wp_register_style('ubiquity_widget_style', $ubiquity_plugin_url.'/css/ubiq_widgets.css');
     wp_enqueue_style('ubiquity_widget_style');
   }
-  
+
 	if (!get_option('ubiq_shownavbar') && !is_admin()) { return; }
-	
+
 	$ubiquity_plugin_url = trailingslashit( get_bloginfo('wpurl') ).PLUGINDIR.'/'. dirname( plugin_basename(__FILE__) );
 	wp_register_style('ubiquity_style', $ubiquity_plugin_url.'/css/ubiquity_nav.css');
 	wp_enqueue_style('ubiquity_style');
 }
- 
+
 function ubiquity_print_init_script() { ?>
 
 <?php
@@ -216,7 +209,7 @@ function ubiq_print_liftium_header() {
     ?>
     <script>LiftiumOptions = {pubid: <?php echo get_option('ubiq_liftium_pubid') ?>, placement : "<?php echo get_option('ubiq_liftium_placement') ?>"}</script>
     <script src="http://delivery.importantmedia.org/js/Liftium.js"></script>
-    
+
     <?php
   }
 }
