@@ -1,0 +1,190 @@
+@facebook_blue: #3B5998;
+@facebook_blue_shaded: #CAD4E7;
+@facebook_blue_highlight: #9DACCE;
+@base_color: #fff;
+
+
+.rounded-corners(@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+}
+
+.rounded-corners-south(@radius: 5px) {
+	-webkit-border-bottom-right-radius: @radius;
+	-webkit-border-bottom-left-radius: @radius;
+	-moz-border-radius-bottomright: @radius;
+	-moz-border-radius-bottomleft: @radius;
+	border-bottom-right-radius: @radius;
+	border-bottom-left-radius: @radius;
+}
+
+.rounded-corners-north(@radius: 5px) {
+	-webkit-border-top-right-radius: @radius;
+	-webkit-border-top-left-radius: @radius;
+	-moz-border-radius-topright: @radius; 
+	-moz-border-radius-topleft: @radius;
+	border-top-right-radius: @radius;
+	border-top-left-radius: @radius;
+}
+.rounded-corners-east(@radius: 5px) {
+	-webkit-border-top-right-radius: @radius;
+	-webkit-border-bottom-right-radius: @radius;
+	-moz-border-radius-topright: @radius;
+	-moz-border-radius-bottomright: @radius;
+	border-top-right-radius: @radius; 
+	border-bottom-right-radius: @radius;
+}
+
+.rounded-corners-nw(@radius: 5px) {
+	-webkit-border-top-left-radius: 3px;
+	-moz-border-radius-topleft: 3px; 
+	border-top-left-radius: 3px;
+}
+
+
+.box-shadow(@x: 0px, @y: 0px, @feather: 0px, @bcolor: #000000) {
+	box-shadow: @x @y @feather @bcolor;
+	-moz-box-shadow:  @x @y @feather @bcolor;
+	-webkit-box-shadow: @x @y @feather @bcolor;
+} 
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearme() {
+	content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.ubiq_fbstandard {
+  #facebook_widget {
+  	background-color: @facebook_blue;
+  	padding: 10px;
+  	.widget_header {
+  	  background-color: @base_color;
+  	  .rounded-corners-north(5px);
+  		ul.tabs {
+  			list-style: none;
+  			line-height: 30px;
+  			li {
+  				float: left;
+  				padding: 0 10px;
+  				color: @facebook_blue;
+  			}
+  		}
+  		ul.tabs:after {
+  			.clearme();
+  		}
+  	}
+  	.widget_header:after {
+  		.clearme();
+  	}
+  	.widget_body {
+  		background-color: @base_color;
+  		height: 300px;
+  		ul.panels {
+  			list-style: none;
+  			li {
+  				display: none;
+  				height: 300px;
+  			}
+  			li.active {
+  				display: block;
+  			}
+  		}
+  	}
+  	.widget_masthead {
+  		.rounded-corners-north(3px);
+  		padding:10px;
+  		background-color: @facebook_blue_shaded;
+  	}
+  
+  }  
+}
+
+.ubiq_social_buttons {
+  margin-left: 15px;
+  list-style: none;
+  li {
+    float: left;
+    margin-right: 8px;
+    &.fbshr {
+      margin-top: 1px;
+    }
+  }
+}
+
+.ubiq_button_fb {
+  padding: 0em;
+  line-height: 16px;
+  border: 1px solid @facebook_blue_shaded;
+  background-color: #ECEEF5;
+  color: @facebook_blue;
+  .rounded-corners(3px);
+  cursor: pointer;
+  float: left;
+  margin-right: 5px;
+  .sharetext {
+    float:left;
+    margin-top: 2px;
+  }
+  .fbicon {
+    float: left;
+    width: 14px;
+    height: 14px;
+    background: url('images/fb_micro.png') no-repeat 0 -47px transparent;
+    margin: 2px 4px;
+  }
+  .count {
+    float: left;
+    margin: 2px 6px 0;
+    font-weight: bold;
+  }
+  &:hover {
+    border: 1px solid @facebook_blue_highlight;
+    background-color: #ECEEF5;
+  }
+}
+
+#ubiq_sitecard {
+  height: 85px;
+  #facebook_like {
+    float: left;
+  }
+  #social_buttons {
+    float: right;
+    margin-top: 45px;
+    ul {
+      list-style: none;
+      li {
+        float: left;
+        padding: 0 10px 0 0;
+        .twtr_32 {
+          width: 32px;
+          height: 32px;
+          text-indent: 999px;
+          overflow: hidden;
+          display: block;
+          background: url('images/icons/32/twitter.png') no-repeat 0 0 transparent;
+        }
+        .rss_32 {
+          width: 32px;
+          height: 32px;
+          text-indent: 999px;
+          overflow: hidden;
+          display: block;
+          background: url('images/icons/32/rss.png') no-repeat 0 0 transparent;
+        }
+      }
+    }
+  }
+}

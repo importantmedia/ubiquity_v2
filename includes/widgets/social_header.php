@@ -1,0 +1,1 @@
+<fb:like href="<?php the_permalink() ?>"></fb:like>
